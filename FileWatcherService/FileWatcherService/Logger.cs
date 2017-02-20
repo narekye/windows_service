@@ -67,7 +67,7 @@ namespace FileWatcherService
             {
                 using (StreamWriter writer = new StreamWriter("D:\\templog.txt", true))
                 {
-                    writer.WriteLine(string.Format("{0} file {1} was {2}",
+                    writer.WriteLine(string.Format("{0} file [{1}] was {2}",
                     DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), filePath, fileEvent));
                     writer.Flush();
                 }
