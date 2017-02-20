@@ -8,17 +8,17 @@ namespace FileWatcherService
         private Logger logger;
         public Service1()
         {
-            this.ServiceName = "Service1";
+            ServiceName = "Service1";
             InitializeComponent();
-            this.CanStop = true;
-            this.CanPauseAndContinue = true;
-            this.AutoLog = true;
+            CanStop = true;
+            CanPauseAndContinue = true;
+            AutoLog = true;
         }
 
         protected override void OnStart(string[] args)
         {
             logger = new Logger();
-            Thread loggerThread = new Thread(new ThreadStart(logger.Start));
+            Thread loggerThread = new Thread(logger.Start);
             loggerThread.Start();
         }
 
@@ -27,7 +27,5 @@ namespace FileWatcherService
             logger.Stop();
             Thread.Sleep(1000);
         }
-
-       
     }
 }

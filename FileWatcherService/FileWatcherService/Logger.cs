@@ -10,6 +10,7 @@ namespace FileWatcherService
         bool enabled = true;
         public Logger()
         {
+            // you can change this directory to your own !!
             watcher = new FileSystemWatcher("D:\\Temp");
             watcher.Deleted += Watcher_Deleted;
             watcher.Created += Watcher_Created;
@@ -61,11 +62,12 @@ namespace FileWatcherService
 
         private void RecordEntry(string fileEvent, string filePath)
         {
+            // locking that object because many users can create, change, rename etc.
             lock (obj)
             {
                 using (StreamWriter writer = new StreamWriter("D:\\templog.txt", true))
                 {
-                    writer.WriteLine(String.Format("{0} file {1} was {2}",
+                    writer.WriteLine(string.Format("{0} file {1} was {2}",
                     DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), filePath, fileEvent));
                     writer.Flush();
                 }
